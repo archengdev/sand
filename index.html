@@ -2,28 +2,32 @@
 <script>
   /* global nn */
   let canvas, ctx
+  const CANVH = 40
+  const CANVW = 40
+  const PIXEL_SIZE = 8
 
-  function randomRectangle () {
+  function randomRectangle(x,y) {
     ctx.fillStyle = nn.randomColor()
-    const x = nn.random(0, canvas.width)
-    const y = nn.random(0, canvas.height)
-    const w = nn.random(100, 200)
-    const h = nn.random(100, 200)
-    ctx.fillRect(x, y, w, h)
+    ctx.fillRect(0, 0, PIXEL_SIZE, PIXEL_SIZE)
   }
   
   
   function setup () {
     canvas = nn.create('canvas')
-      .css('border', '1px solid', 
-           {position: 'absolute',
-            left: nn.width/2})
-      .set({ width: 50, height: 50 })
+      .css('border', '5px solid')
+      .css({
+        position: 'absolute',
+        left: (nn.width - CANVW) / 2,
+        top: (nn.height - CANVH) / 2,
+        })
+      .set({ width: CANVW, height: CANVH })
       .addTo('body')
     
     ctx = canvas.getContext('2d')
     
-    randomRectangle()
+    for (let x = 0; x <= 10; x++){
+      randomRectangle(x,0)
+    }
   }
 
   nn.on('load', setup)
