@@ -8,7 +8,8 @@
 
   function fillPixel(x,y) {
     // x and y are coords in big pixel space
-    ctx.fillStyle = nn.randomColor()
+    // ctx.fillStyle = nn.randomColor()
+    ctx.fillStyle = pixels[x][y]
     ctx.fillRect(x*PIXEL_SIZE, y*PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE)
   }
   
@@ -33,14 +34,33 @@
     ctx = canvas.getContext('2d')
   }
   
+  let pixels = []
+  const rows = CANVW / PIXEL_SIZE
+  const cols = CANVH / PIXEL_SIZE
+  for (let i = 0; i < rows; i++) {
+    pixels[i] = []
+    for (let j = 0; j < cols; j++) {
+        pixels[i][j] = "#FFFFFF" // init to white
+    }
+  }
+  
   async function animate() {
     await nn.sleep(1000)
     requestAnimationFrame(animate)
+    
+    // animation loop:
+    
+    // try to add new pixel
+    
+    // update existing pixels
+    
+    // draw all pixels
     for (let x = 0; x <= 10; x++){
       for (let y = 0; y <= 10; y++){
         fillPixel(x,y)
       }
     }
+    
   }
 
   nn.on('load', setup)
