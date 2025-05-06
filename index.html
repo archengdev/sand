@@ -31,17 +31,18 @@
     
     canvas.style.margin = '0px'
     ctx = canvas.getContext('2d')
-    
+  }
+  
+  async function animate() {
+    await nn.sleep(1000)
+    requestAnimationFrame(animate)
     for (let x = 0; x <= 10; x++){
       for (let y = 0; y <= 10; y++){
         fillPixel(x,y)
       }
     }
   }
-  
-  function animate() {
-    
-  }
 
   nn.on('load', setup)
+  nn.on('load', animate)
 </script>
