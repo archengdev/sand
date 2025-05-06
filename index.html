@@ -44,13 +44,16 @@
     }
   }
   
+  let start = (3, 0)
   async function animate() {
     await nn.sleep(1000)
     requestAnimationFrame(animate)
     
     // animation loop:
-    
     // try to add new pixel
+    if (pixels[start[0], start[1]] !== "#FFFFFF") {
+      pixels[start[0], start[1]] = "#000000"
+    }
     
     // update existing pixels
     
