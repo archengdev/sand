@@ -1,0 +1,30 @@
+<script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
+<script>
+  /* global nn */
+  let canvas, ctx
+
+  function randomRectangle () {
+    ctx.fillStyle = nn.randomColor()
+    const x = nn.random(0, canvas.width)
+    const y = nn.random(0, canvas.height)
+    const w = nn.random(100, 200)
+    const h = nn.random(100, 200)
+    ctx.fillRect(x, y, w, h)
+  }
+  
+  
+  function setup () {
+    canvas = nn.create('canvas')
+      .css('border', '1px solid', 
+           {position: 'absolute',
+            left: nn.width/2})
+      .set({ width: 50, height: 50 })
+      .addTo('body')
+    
+    ctx = canvas.getContext('2d')
+    
+    randomRectangle()
+  }
+
+  nn.on('load', setup)
+</script>
