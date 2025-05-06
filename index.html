@@ -44,22 +44,36 @@
     }
   }
   
-  let start = (3, 0)
+  let source = [4, 0]
   async function animate() {
     await nn.sleep(1000)
     requestAnimationFrame(animate)
     
     // animation loop:
-    // try to add new pixel
-    if (pixels[start[0], start[1]] !== "#FFFFFF") {
-      pixels[start[0], start[1]] = "#000000"
-    }
-    
     // update existing pixels
+    // iterate over all pixels from bottom to top
+    // ignore last row
+    for (let y = rows - 2; y >= 0; y--) {
+      for (let x = 0; x < rows; x++) {
+        // for each pixel, check below. if white, replace
+        if (pixels[x][y+1] === "#FFFFFF") {
+          pixels[x][y+1] = pixels[x][y]
+          pixels[x][y] = "#FFFFFF"
+        }
+      }
+    }
+    // try to add new pixel
+    // modify source
     
+    // add pixel
+    if (pixels[source[0]][source[1]] === "#FFFFFF") {
+      pixels[source[0]][source[1]] = "#000000"
+    }
+
+
     // draw all pixels
-    for (let x = 0; x <= 10; x++){
-      for (let y = 0; y <= 10; y++){
+    for (let x = 0; x < rows; x++) {
+      for (let y = 0; y < rows; y++) {
         fillPixel(x,y)
       }
     }
