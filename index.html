@@ -2,32 +2,45 @@
 <script>
   /* global nn */
   let canvas, ctx
-  const CANVH = 40
-  const CANVW = 40
-  const PIXEL_SIZE = 8
+  const CANVH = 50
+  const CANVW = 50
+  const PIXEL_SIZE = 5
 
-  function randomRectangle(x,y) {
+  function fillPixel(x,y) {
+    // x and y are coords in big pixel space
     ctx.fillStyle = nn.randomColor()
-    ctx.fillRect(0, 0, PIXEL_SIZE, PIXEL_SIZE)
+    ctx.fillRect(x*PIXEL_SIZE, y*PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE)
   }
   
   
-  function setup () {
+  function setup() {
+    nn.get('body').css({
+      backgroundColor: 'cyan',
+      overflow: 'hidden'
+    })
+    
     canvas = nn.create('canvas')
-      .css('border', '5px solid')
+      .css('border', '1px solid')
       .css({
         position: 'absolute',
-        left: (nn.width - CANVW) / 2,
-        top: (nn.height - CANVH) / 2,
+        left: Math.floor((nn.width - CANVW) / 2),
+        top: Math.floor((nn.height - CANVH) / 2),
         })
       .set({ width: CANVW, height: CANVH })
       .addTo('body')
     
+    canvas.style.margin = '0px'
     ctx = canvas.getContext('2d')
     
     for (let x = 0; x <= 10; x++){
-      randomRectangle(x,0)
+      for (let y = 0; y <= 10; y++){
+        fillPixel(x,y)
+      }
     }
+  }
+  
+  function animate() {
+    
   }
 
   nn.on('load', setup)
