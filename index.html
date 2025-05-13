@@ -9,6 +9,7 @@
   const CANVH = 200
   const CANVW = 200
   const PIXEL_SIZE = 5
+  let currAngle
 
   function fillPixel(x,y) {
     ctx.fillStyle = pixels[x][y]
@@ -16,7 +17,7 @@
   }
   
   
-  function setup() {    
+  function setup(e) {    
     canvas = nn.create('canvas')
       .css('border', '1px solid')
       .css({
@@ -29,6 +30,7 @@
     
     canvas.style.margin = '0px'
     ctx = canvas.getContext('2d')
+    // currAngle = e.target.screen.orientation.angle
   }
   
   let pixels = []
@@ -146,9 +148,12 @@
       source[0] = Math.min(source[0]+1, cols-1)
     }
   }
-  
-  function orientationRotate() {
-    pixels = rotateMatrix(pixels)
+currAngle = 90
+  function orientationRotate(e) {
+    // pixels = rotateMatrix(pixels)
+    if (event.target.screen.orientation.angle !== currAngle) {
+      pixels = rotateMatrix(pixels)
+    }
   }
   
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
