@@ -86,8 +86,7 @@
     // add pixel
     // add randomly, eg 1/3 chance?
     if (nn.random() > 0.7 && pixels[source[0]][source[1]] === "#FFFFFF") {      
-      document.body.style.backgroundColor = "red"
-      // gradient(cvar)
+      document.body.style.backgroundColor = gradient(cvar)
       pixels[source[0]][source[1]] = gradient(cvar)
       cvar += 0.005
       if (cvar > 1) {
