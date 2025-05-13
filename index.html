@@ -17,7 +17,7 @@
   }
   
   
-  function setup(e) {    
+  function setup(e) {  
     canvas = nn.create('canvas')
       .css('border', '1px solid')
       .css({
@@ -30,7 +30,7 @@
     
     canvas.style.margin = '0px'
     ctx = canvas.getContext('2d')
-    // currAngle = e.target.screen.orientation.angle
+    currAngle = 90
   }
   
   let pixels = []
@@ -148,12 +148,14 @@
       source[0] = Math.min(source[0]+1, cols-1)
     }
   }
-currAngle = 90
+  
+  function angleRotate(newAngle, currAngle) {
+    
+  }
   function orientationRotate(e) {
-    // pixels = rotateMatrix(pixels)
-    if (event.target.screen.orientation.angle !== currAngle) {
-      pixels = rotateMatrix(pixels)
-    }
+    angleRotate(e.target.screen.orientation.angle, currAngle)
+    
+    currAngle = e.target.screen.orientation.angle
   }
   
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
