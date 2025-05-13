@@ -92,21 +92,20 @@
     }
     
     
-    if (cvar > 0.5) {
-      canvas.remove()
-      canvas = nn.create('canvas')
-        .css('border', '1px solid')
-        .css({
-          position: 'absolute',
-          left: Math.floor((nn.width - CANVW) / 2),
-          top: Math.floor((nn.height - CANVH) / 2),
-          })
-        .set({ width: CANVW, height: CANVH })
-        .addTo('body')
 
-      canvas.style.margin = '0px'
-      ctx = canvas.getContext('2d')
-    }
+    canvas.remove()
+    canvas = nn.create('canvas')
+      .css('border', '1px solid')
+      .css({
+        position: 'absolute',
+        left: Math.floor((nn.width - CANVW) / 2),
+        top: Math.floor((nn.height - CANVH) / 2),
+        })
+      .set({ width: CANVW, height: CANVH })
+      .addTo('body')
+
+    canvas.style.margin = '0px'
+    ctx = canvas.getContext('2d')
     // draw all pixels
     for (let x = 0; x < cols; x++) {
       for (let y = 0; y < rows; y++) {
@@ -150,23 +149,6 @@
   
   function orientationRotate() {
     pixels = rotateMatrix(pixels)
-    
-    canvas.remove()
-    
-    canvas = nn.create('canvas')
-      .css('border', '1px solid')
-      .css({
-        position: 'absolute',
-        left: Math.floor((nn.width - CANVW) / 2),
-        top: Math.floor((nn.height - CANVH) / 2),
-        })
-      .set({ width: CANVW, height: CANVH })
-      .addTo('body')
-    
-    canvas.style.margin = '0px'
-    ctx = canvas.getContext('2d')
-    
-    
   }
   
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
