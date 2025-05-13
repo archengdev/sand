@@ -85,13 +85,18 @@
     // add randomly, eg 1/3 chance?
     if (pixels[source[0]][source[1]] === "#FFFFFF") {
       pixels[source[0]][source[1]] = gradient(cvar)
-      cvar += 0.002
+      cvar += 0.005
       if (cvar > 1) {
         c1 = c2
         c2 = new Color(nn.random(colors))
         gradient = c1.range(c2, {space: "HSL"})
         cvar = 0
       }
+    }
+    
+    if (cvar > 0.9) {
+      pixels = rotateMatrix(pixels)
+      cvar = 0
     }
     // draw all pixels
     for (let x = 0; x < cols; x++) {
@@ -101,6 +106,21 @@
     }
     
   }
+
+  function rotateMatrix(matrix) {
+  const m = matrix.length;
+  const n = matrix[0].length;
+
+  const rotated = Array(n).fill(null).map(() => Array(m));
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      rotated[j][m - 1 - i] = matrix[i][j];
+    }
+  }
+  return rotated
+}
+  
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
   let cvar = 0
   let c1 = new Color(nn.random(colors))
@@ -108,4 +128,5 @@
   let gradient = c1.range(c2, {space: "HSL"})
   nn.on('load', setup)
   nn.on('load', animate)
+  // nn.on('keydown', animate)
 </script>
