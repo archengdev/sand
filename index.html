@@ -3,7 +3,7 @@
   /* global nn */
   let canvas, ctx
   const CANVH = 50
-  const CANVW = 50
+  const CANVW = 100
   const PIXEL_SIZE = 5
 
   function fillPixel(x,y) {
@@ -54,16 +54,22 @@
     // iterate over all pixels from bottom to top
     // ignore last row
     for (let y = rows - 2; y >= 0; y--) {
-      for (let x = 0; x < rows; x++) {
+      for (let x = 0; x < cols; x++) {
         // for each pixel, check below. if white, replace
         if (pixels[x][y+1] === "#FFFFFF") {
           pixels[x][y+1] = pixels[x][y]
           pixels[x][y] = "#FFFFFF"
         } else { // check left/right
+          // left
           if (x-1 >= 0 && pixels[x-1][y+1] === "#FFFFFF") {
             pixels[x-1][y+1] = pixels[x][y]
             pixels[x][y] = "#FFFFFF"
           }
+          // right
+          if (x+1 <= cols && pixels[x+1][y+1] === "#FFFFFF") {
+            pixels[x+1][y+1] = pixels[x][y]
+            pixels[x][y] = "#FFFFFF"
+          } 
         }
       }
     }
