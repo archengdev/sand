@@ -2,8 +2,8 @@
 <script>
   /* global nn */
   let canvas, ctx
-  const CANVH = 50
-  const CANVW = 100
+  const CANVH = 200
+  const CANVW = 200
   const PIXEL_SIZE = 5
 
   function fillPixel(x,y) {
@@ -35,18 +35,27 @@
   }
   
   let pixels = []
-  const rows = CANVW / PIXEL_SIZE
-  const cols = CANVH / PIXEL_SIZE
-  for (let i = 0; i < rows; i++) {
+  const rows = CANVH / PIXEL_SIZE
+  const cols = CANVW / PIXEL_SIZE
+  for (let i = 0; i < cols; i++) {
     pixels[i] = []
-    for (let j = 0; j < cols; j++) {
+    for (let j = 0; j < rows; j++) {
         pixels[i][j] = "#FFFFFF" // init to white
     }
   }
   
-  let source = [4, 0]
+  function movePx(x, y, newX) {
+    if (newX >= 0 && newX < cols && pixels[newX][y+1] === "#FFFFFF") {
+      pixels[newX][y+1] = pixels[x][y]
+      pixels[x][y] = "#FFFFFF"
+      return true
+    }
+    return false
+  }
+  
+  let source = [30, 0]
   async function animate() {
-    await nn.sleep(1000)
+    await nn.sleep(10)
     requestAnimationFrame(animate)
     
     // animation loop:
@@ -56,21 +65,29 @@
     for (let y = rows - 2; y >= 0; y--) {
       for (let x = 0; x < cols; x++) {
         // for each pixel, check below. if white, replace
-        if (pixels[x][y+1] === "#FFFFFF") {
-          pixels[x][y+1] = pixels[x][y]
-          pixels[x][y] = "#FFFFFF"
-        } else { // check left/right
-          // left
-          if (x-1 >= 0 && pixels[x-1][y+1] === "#FFFFFF") {
-            pixels[x-1][y+1] = pixels[x][y]
-            pixels[x][y] = "#FFFFFF"
+        if (!movePx(x, y, x)) {
+          // unsuccessful, check left/right
+          if (nn.random() > 0.5) {
+            if (!movePx(x, y, x+1)) movePx(x, y, x-1)
+          } else {
+            if (!movePx(x, y, x-1)) movePx(x, y, x+1) 
           }
-          // right
-          if (x+1 <= cols && pixels[x+1][y+1] === "#FFFFFF") {
-            pixels[x+1][y+1] = pixels[x][y]
-            pixels[x][y] = "#FFFFFF"
-          } 
         }
+        // if (pixels[x][y+1] === "#FFFFFF") {
+        //   pixels[x][y+1] = pixels[x][y]
+        //   pixels[x][y] = "#FFFFFF"
+        // } else { // check left/right
+        //   // left
+        //   if (x-1 >= 0 && pixels[x-1][y+1] === "#FFFFFF") {
+        //     pixels[x-1][y+1] = pixels[x][y]
+        //     pixels[x][y] = "#FFFFFF"
+        //   }
+        //   // right
+        //   if (x+1 <= cols && pixels[x+1][y+1] === "#FFFFFF") {
+        //     pixels[x+1][y+1] = pixels[x][y]
+        //     pixels[x][y] = "#FFFFFF"
+        //   } 
+        // }
       }
     }
     // try to add new pixel
@@ -84,7 +101,7 @@
 
 
     // draw all pixels
-    for (let x = 0; x < rows; x++) {
+    for (let x = 0; x < cols; x++) {
       for (let y = 0; y < rows; y++) {
         fillPixel(x,y)
       }
