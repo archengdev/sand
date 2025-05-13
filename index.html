@@ -11,18 +11,12 @@
   const PIXEL_SIZE = 5
 
   function fillPixel(x,y) {
-    // ctx.fillStyle = nn.randomColor()
     ctx.fillStyle = pixels[x][y]
     ctx.fillRect(x*PIXEL_SIZE, y*PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE)
   }
   
   
-  function setup() {
-    nn.get('body').css({
-      // backgroundColor: 'cyan',
-      overflow: 'hidden'
-    })
-    
+  function setup() {    
     canvas = nn.create('canvas')
       .css('border', '1px solid')
       .css({
@@ -139,6 +133,23 @@
   
   function orientationRotate() {
     pixels = rotateMatrix(pixels)
+    
+    canvas.remove()
+    
+    canvas = nn.create('canvas')
+      .css('border', '1px solid')
+      .css({
+        position: 'absolute',
+        left: Math.floor((nn.width - CANVW) / 2),
+        top: Math.floor((nn.height - CANVH) / 2),
+        })
+      .set({ width: CANVW, height: CANVH })
+      .addTo('body')
+    
+    canvas.style.margin = '0px'
+    ctx = canvas.getContext('2d')
+    
+    
   }
   
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
