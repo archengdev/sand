@@ -56,7 +56,7 @@
     return false
   }
   
-  let source = [30, 0]
+  let source = [Math.floor(cols/2)+1, 0]
   async function animate() {
     await nn.sleep(10)
     requestAnimationFrame(animate)
@@ -124,6 +124,13 @@
       pixels = rotateMatrix(pixels)
       pixels = rotateMatrix(pixels)
       pixels = rotateMatrix(pixels)
+    }
+    
+    if (e.key === "a") {
+      source[0] = Math.max(source[0]-1, 0)
+    }
+    if (e.key === "d") {
+      source[0] = Math.min(source[0]+1, cols-1)
     }
   }
   
