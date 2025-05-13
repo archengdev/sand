@@ -137,6 +137,10 @@
     }
   }
   
+  function orientationRotate() {
+    pixels = rotateMatrix(pixels)
+  }
+  
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
   let cvar = 0
   let c1 = new Color(nn.random(colors))
@@ -145,4 +149,5 @@
   nn.on('load', setup)
   nn.on('load', animate)
   nn.on('keydown', rotate)
+  nn.on('orientationchange', orientationRotate)
 </script>
