@@ -154,7 +154,7 @@
     switch (newAngle) {
       case 0:
         switch(currAngle) {
-          case 90:
+          case 270:
             pixels = rotateMatrix(pixels)
             break
           
@@ -163,7 +163,7 @@
             pixels = rotateMatrix(pixels)
             break
           
-          case 270:
+          case 90:
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
@@ -174,7 +174,7 @@
         
       case 90:
         switch(currAngle) {
-          case 180:
+          case 0:
             pixels = rotateMatrix(pixels)
             break
           
@@ -183,7 +183,7 @@
             pixels = rotateMatrix(pixels)
             break
           
-          case 0:
+          case 180:
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
@@ -194,7 +194,7 @@
         
       case 180:
         switch(currAngle) {
-          case 270:
+          case 90:
             pixels = rotateMatrix(pixels)
             break
           
@@ -203,7 +203,7 @@
             pixels = rotateMatrix(pixels)
             break
           
-          case 90:
+          case 270:
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
@@ -214,7 +214,7 @@
         
       case 270:
         switch(currAngle) {
-          case 0:
+          case 180:
             pixels = rotateMatrix(pixels)
             break
           
@@ -223,7 +223,7 @@
             pixels = rotateMatrix(pixels)
             break
           
-          case 180:
+          case 0:
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
             pixels = rotateMatrix(pixels)
