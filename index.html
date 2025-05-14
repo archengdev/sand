@@ -30,7 +30,6 @@
     
     canvas.style.margin = '0px'
     ctx = canvas.getContext('2d')
-    currAngle = 90
   }
   
   let pixels = []
@@ -149,13 +148,95 @@
     }
   }
   
+  currAngle = 0
   function angleRotate(newAngle, currAngle) {
-    
+    switch (newAngle) {
+      case 0:
+        switch(currAngle) {
+          case 90:
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 180:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 270:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+        }
+        break
+        
+        
+      case 90:
+        switch(currAngle) {
+          case 180:
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 270:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 0:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+        }
+        break
+        
+        
+      case 180:
+        switch(currAngle) {
+          case 270:
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 0:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 90:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+        }
+        break
+        
+        
+      case 270:
+        switch(currAngle) {
+          case 0:
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 90:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+          
+          case 180:
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            pixels = rotateMatrix(pixels)
+            break
+        }
+        break
+    }
   }
   function orientationRotate(e) {
     angleRotate(e.target.screen.orientation.angle, currAngle)
-    
     currAngle = e.target.screen.orientation.angle
+    // angleRotate(e.target.screen.orientation.angle, currAngle)
+    
+    // currAngle = e.target.screen.orientation.angle
   }
   
   let colors = ["aqua", "aquamarine", "bisque", "blueviolet", "chocolate", "cornflowerblue", "crimson", "darkgoldenrod", "darkcyan", "darkmagenta", "darkolivegreen"]
