@@ -6,8 +6,9 @@
   /* global Color */
   /* global colorsys */
   let canvas, ctx
-  const CANVH = 200
-  const CANVW = 200
+  let sz = Math.ceil(Math.min(nn.width, nn.height) / 10) * 5
+  const CANVH = sz
+  const CANVW = sz
   const PIXEL_SIZE = 5
   let currAngle
 
