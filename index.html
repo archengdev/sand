@@ -34,8 +34,20 @@
     
     if (!nn.isMobile()) {
     nn.create('div')
-      .content("qaed")
-      .css({position: 'absolute', right: 5, top: 0, color: "rgba(0, 0, 0, 0.2)", fontSize: "25px", fontFamily: ""})
+      .content("Q")
+      .css({position: 'absolute', left: 5, top: 0, color: "rgba(0, 0, 0, 0.2)", fontSize: "25px", fontFamily: "Courier new"})
+      .addTo('body')
+    nn.create('div')
+      .content("E")
+      .css({position: 'absolute', right: 5, top: 0, color: "rgba(0, 0, 0, 0.2)", fontSize: "25px", fontFamily: "Courier new"})
+      .addTo('body')
+    nn.create('div')
+      .content("A")
+      .css({position: 'absolute', left: 5, bottom: 0, color: "rgba(0, 0, 0, 0.2)", fontSize: "25px", fontFamily: "Courier new"})
+      .addTo('body')
+    nn.create('div')
+      .content("D")
+      .css({position: 'absolute', right: 5, bottom: 0, color: "rgba(0, 0, 0, 0.2)", fontSize: "25px", fontFamily: "Courier new"})
       .addTo('body')
     }
   }
