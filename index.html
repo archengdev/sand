@@ -32,11 +32,12 @@
     canvas.style.margin = '0px'
     ctx = canvas.getContext('2d')
     
-    
+    if (!nn.isMobile()) {
     nn.create('div')
       .content("qaed")
       .css({position: 'absolute', right: 5, top: 0, color: "rgba(0, 0, 0, 0.2)", fontSize: "25px", fontFamily: ""})
       .addTo('body')
+    }
   }
   
   let pixels = []
